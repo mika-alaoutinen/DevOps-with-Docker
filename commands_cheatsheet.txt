@@ -34,7 +34,10 @@ Remove image
 > docker rmi <image>
 
 
-- - Push and pull - -
+- - Building, pushing and pulling - -
+
+Build a new image
+> docker build .
 
 Pull image without running it
 > docker pull <image name>
