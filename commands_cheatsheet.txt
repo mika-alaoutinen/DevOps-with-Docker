@@ -9,10 +9,8 @@ List containers that are running
 
 - - Running images - -
 
-Run docker image
+Run docker image; run detached
 > docker run <image>
-
-Run image detached
 > docker run -d <image>
 
 Stop image that is being run
@@ -28,10 +26,8 @@ Example: docker rm 48 f7 # first characters of two IDs, deletes two images
 Prune container (removes all stopped containers)
 > docker container prune
 
-Prune all dangling containers
+Prune all dangling containers; prune images as well
 > docker system prune
-
-Prune all containers and images
 > docker system prune -a
 
 Remove image
@@ -42,3 +38,20 @@ Remove image
 
 Pull image without running it
 > docker pull <image name>
+
+
+- - Enter running containers - -
+
+Enter a container and use its command line
+> docker exec -it <container name or ID> <command>
+Example: docker exec -it looper bash
+
+- - Managing running containers - -
+
+View logs; stream logs
+> docker logs <container name or ID>
+> docker logs -f <container name or ID>
+
+Pause and unpause containers
+> docker pause <container name or ID>
+> docker unpause <container name or ID>
