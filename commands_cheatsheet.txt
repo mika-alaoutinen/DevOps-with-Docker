@@ -1,0 +1,44 @@
+- - Listing images and containers - -
+
+List images you have currently downloaded
+> docker images
+
+List containers that are running
+> docker container ls
+
+
+- - Running images - -
+
+Run docker image
+> docker run <image>
+
+Run image detached
+> docker run -d <image>
+
+Stop image that is being run
+> docker stop <container name or ID>
+
+
+- - Removing containers and images - -
+
+Remove container
+> docker rm <container ID or name>
+Example: docker rm 48 f7 # first characters of two IDs, deletes two images
+
+Prune container (removes all stopped containers)
+> docker container prune
+
+Prune all dangling containers
+> docker system prune
+
+Prune all containers and images
+> docker system prune -a
+
+Remove image
+> docker rmi <image>
+
+
+- - Push and pull - -
+
+Pull image without running it
+> docker pull <image name>
