@@ -26,6 +26,8 @@ services:
     container_name: frontend
     depends_on:
       - nginx
+    environment:
+      - REACT_APP_BACKEND_URL=/api/
     image: frontend
     networks:
       - nginx_network
