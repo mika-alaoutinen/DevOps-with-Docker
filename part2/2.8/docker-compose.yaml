@@ -52,9 +52,14 @@ services:
     networks:
       - backend_network
     restart: unless-stopped
+    volumes:
+      - ./postgres_db:/var/lib/postgresql/data # Create the volume in the same directory
 
   redis:
     container_name: redis
     image: redis
     networks:
       - backend_network
+
+volumes:
+  postgres_db:
