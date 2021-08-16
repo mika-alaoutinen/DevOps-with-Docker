@@ -1,0 +1,19 @@
+version: '3.5'
+
+# Need to build and tag the example-backend and example-frontend
+# images locally with the below names
+services:
+  backend:
+    environment:
+      - REDIS_HOST=redis
+    image: backend
+    ports:
+      - 8080:8080
+
+  frontend:
+    image: frontend
+    ports:
+      - 5000:5000
+
+  redis:
+    image: redis
