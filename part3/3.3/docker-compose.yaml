@@ -15,7 +15,7 @@ services:
     environment:
       - POSTGRES_HOST=postgres
       - REDIS_HOST=redis
-    image: backend
+    image: backend-alpine
     networks:
       - backend_network
       - nginx_network
@@ -28,7 +28,7 @@ services:
       - nginx
     environment:
       - REACT_APP_BACKEND_URL=/api/
-    image: frontend
+    image: frontend-alpine
     networks:
       - nginx_network
     ports:
