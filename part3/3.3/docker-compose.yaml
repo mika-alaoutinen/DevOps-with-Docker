@@ -1,0 +1,65 @@
+version: '3.8'
+
+networks:
+  backend_network:
+    name: backend_network
+  nginx_network:
+    name: nginx_network
+
+services:
+  backend:
+    container_name: backend
+    depends_on:
+      - nginx
+      - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - REDIS_HOST=redis
+    image: backend-scratch
+    networks:
+      - backend_network
+      - nginx_network
+    ports:
+      - 8080:8080
+
+  frontend:
+    container_name: frontend
+    depends_on:
+      - nginx
+    environment:
+      - REACT_APP_BACKEND_URL=/api/
+    image: frontend-alpine
+    networks:
+      - nginx_network
+    ports:
+      - 5000:5000
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    networks:
+      - nginx_network
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  postgres:
+    container_name: db_postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    image: postgres
+    networks:
+      - backend_network
+    restart: unless-stopped
+    volumes:
+      - ./postgres_db:/var/lib/postgresql/data # Create the volume in the same directory
+
+  redis:
+    container_name: redis
+    image: redis
+    networks:
+      - backend_network
+
+volumes:
+  postgres_db:
