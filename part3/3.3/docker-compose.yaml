@@ -15,7 +15,7 @@ services:
     environment:
       - POSTGRES_HOST=postgres
       - REDIS_HOST=redis
-    image: backend-alpine
+    image: backend-scratch
     networks:
       - backend_network
       - nginx_network
